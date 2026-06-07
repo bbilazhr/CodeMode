@@ -1,0 +1,16 @@
+CREATE OR REPLACE FUNCTION public.get_email_by_username(_username text)
+RETURNS text
+LANGUAGE sql
+STABLE
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT u.email::text
+  FROM public.profiles p
+  JOIN auth.users u ON u.id = p.user_id
+  WHERE p.username = lower(_username)
+  LIMIT 1;
+$$;
+
+REVOKE ALL ON FUNCTION public.get_email_by_username(text) FROM PUBLIC;
+GRANT EXECUTE ON FUNCTION public.get_email_by_username(text) TO anon, authenticated;
