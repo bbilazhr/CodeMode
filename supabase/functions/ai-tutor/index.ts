@@ -22,7 +22,7 @@ Deno.serve(async (req: Request) => {
     } = await req.json();
 
     // tempel API key Gemini kamu di sini
-    const apiKey = "AQ.Ab8RN6LFXQs5smVlQmZ0CkJpW6xkQZy9AlcZ_dQYOtGlyimvJA";
+    const apiKey = "GEMINI_API_KEY";
 
     const userResponse =
       userCode ?? userAnswer ?? "(belum ada jawaban)";
